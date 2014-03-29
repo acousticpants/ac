@@ -1,6 +1,40 @@
+{{left_sidebar_enabled,right_sidebar_enabled=True,('message' in globals())}}
+
 {{extend 'layout.html'}}
 {{if 'message' in globals():}}
 <h3>{{=message}}</h3>
+<p>
+    Why does this site even exist?<br>
+<br>
+It doesn't do anything particularly special. Right?<br>
+<br>
+Well...yes. But most of the internet doesn't do anything special. Apart from the porn,<br>
+downloading movies, tv, games, and stalking each other on facebook, one could say there<br>
+is really very little on the web which makes a difference.<br>
+<br>
+Fair enough I say, fair enough. I'll cut to the chase.<br>
+<br>
+I quite like science. Like, a lot. Molecules, and maths, and charts of data, and <br>
+obscure terminology. It really gets me going. I also like I.T. (as in Information<br>
+Technology). So this site is a kind of attempt at throwing the two together. I've <br>
+noticed there are a LOT of programs out there for molecular modelling, simulation,<br>
+viewig and animation. <br>
+<br>
+The home page on this site gives you a famous example of one these programs. 'Jmol'.<br>
+<br>
+There are many of them. Too many, in my humble opinion. So I think I'd like to try<br>
+and simplify things for people. Why should you have to install all theses programs,<br>
+and then run them, and pay for a computer powerful enough to run them? I don't think<br>
+it's an efficient approach. <br>
+<br>
+So I want to make a website which can do these kinds of simulations and modelling,<br>
+and then make the website do all the work, rather than your computer. This makes a <br>
+lot of sense, because you can just go the website, get your molecules to do the <br>
+things you want, and you can just do that from your laptop, or even your smartphone.<br>
+<br>
+This is pretty much why this site exists. It's a work in progress. It will take time.<br>
+I have no idea what I'm doing. But I'll figure it out along the way.<br>
+</p>
 {{elif 'content' in globals():}}
 {{=content}}
 {{else:}}
