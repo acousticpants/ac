@@ -18,6 +18,10 @@ def index():
     if you need a simple wiki simply replace the two lines below with:
     return auth.wiki()
     """
+    return dict(message=T('The Potassium Channel'))
+
+def jmol():
+
     return dict(message=T('A Coffee Molecule'))
 
 def newpage():
@@ -34,15 +38,6 @@ def about():
 
     return dict(message=T('Why atomcogs exists'))
 
-def jmol_export():
-    """
-    example action using the internationalization operator T and flash
-    rendered by views/default/index.html or views/generic.html
-
-    if you need a simple wiki simply replace the two lines below with:
-    return auth.wiki()
-    """
-    return dict(message=T('Jmol Export'))
 
 def user():
     """

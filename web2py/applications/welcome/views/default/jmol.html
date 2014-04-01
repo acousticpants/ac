@@ -1,0 +1,30 @@
+{{left_sidebar_enabled,right_sidebar_enabled=True,('message' in globals())}}
+
+{{extend 'layout.html'}}
+
+{{if 'message' in globals():}}
+<h3>{{=message}}</h3>
+
+<div style="width:auto;height:auto">
+    <script
+            src="http://chemapps.stolaf.edu/jmol/jmol.php?model=caffeine&inline">
+    </script>
+</div>
+<h3>
+    How to Use this Doover:
+</h3>
+<ul>
+    <li>Allow the Java applet to run</li>
+    <li>Left click to spin</li>
+    <li>Right click for options</li>
+    <li>Right click>'File'> to view other molecules</li>
+    <li>Have fun</li>
+</ul>
+{{elif 'content' in globals():}}
+{{=content}}
+{{else:}}
+{{=BEAUTIFY(response._vars)}}
+{{pass}}
+{{block left_sidebar,right_sidebar}}
+{{end}}
+</html>
