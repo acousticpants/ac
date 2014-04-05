@@ -7,17 +7,16 @@
 
 response.logo = A(B('web',SPAN(2),'py'),XML('&trade;&nbsp;'),
                   _class="brand",_href="http://www.web2py.com/")
-response.title = request.application.replace('_',' ').title()
-response.subtitle = ''
+response.title = 'Atomcogs Molecular Software'
+response.subtitle = 'Scientific Computing with only your browser'
 
 ## read more at http://dev.w3.org/html5/markup/meta.name.html
-response.meta.author = 'Your Name <you@example.com>'
-response.meta.description = 'a cool new app'
-response.meta.keywords = 'web2py, python, framework'
+response.meta.author = 'Site by atomcogs atomcogs@gmail.com'
+response.meta.description = 'Atomcogs is a project attempting to bring scientific computing to the web. This keeps scientists, engineers and researchers from the need to write software or manage expensive computer equipment. This leaves them free to focus on their work.'
+response.meta.keywords = 'web2py, python, framework, scientific software, science software, scientific computing, mathematic computing, molecular dynamics, atoms, molecular simulation, jmol, pymol, vmd, numpy, scipy, pylab, cloud computing, biotechnology, nanotechnology, nanobionics, particle physics, atomic simulation software, scientific python, numeric python'
 response.meta.generator = 'Web2py Web Framework'
-
 ## your http://google.com/analytics id
-response.google_analytics_id = None
+response.google_analytics_id = 'UA-49486661-1'
 
 #########################################################################
 ## this is the main application menu add/remove items as required
