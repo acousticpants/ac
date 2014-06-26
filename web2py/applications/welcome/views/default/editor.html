@@ -1,0 +1,17 @@
+{{left_sidebar_enabled,right_sidebar_enabled=True,('message' in globals())}}
+{{extend 'layout.html'}}
+{{if 'message' in globals():}}
+<h3>{{=message}}</h3>
+
+{{elif 'content' in globals():}}
+{{=content}}
+{{else:}}
+{{=BEAUTIFY(response._vars)}}
+{{pass}}
+<form>
+    <textarea name="editor1" id="editor1" rows="100" cols="80"></textarea>
+    <script>CKEDITOR.replace('editor1');</script>
+</form>
+{{block left_sidebar,right_sidebar}}
+{{end}}
+</html>
