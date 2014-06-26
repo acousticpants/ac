@@ -21,8 +21,7 @@ def index():
     return dict(message=T('The Potassium Channel'))
 
 def jmol():
-
-    return dict(message=T('A Coffee Molecule'))
+    return dict(message=T('A Molecule'))
 
 def newpage():
     """
@@ -37,6 +36,10 @@ def newpage():
 def about():
 
     return dict(message=T('Why atomcogs exists'))
+
+def molecule_videos():
+
+    return dict(message=T('Atomcogs Molecule Videos'))
 
 """
 def user():
