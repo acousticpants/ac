@@ -1,0 +1,184 @@
+<body onload="DoOnLoad()">
+<form class="container-fluid" name="plotForm" action="funcplot" method="POST" onsubmit="DoPlot(FF.value); return false">
+
+<legend class="container-fluid" "table">1:Drawing mode:</legend>
+Picture size:<br>
+<select onchange="SetSize(this[this.selectedIndex].value)">
+<option value="160x90">Smallest</option>
+<option value="320x180">Small</option>
+<option value="480x270">Medium</option>
+<option value="640x360" selected="selected">Large</option>
+<option value="800x450">Larger</option>
+<option value="960x540">Largest</option>
+</select>
+<br>
+Plot mode:<br>
+<select onchange="PlotType=this.selectedIndex">
+<option selected="selected">Standard</option>
+<option>Solid</option>
+</select>
+
+<legend>2:Function to plot:</legend>
+f(x[,y]) = <input name="fnfx" size="40" value="2x" type="text"><br>
+x-min: <input name="xmin" size="12" value="-6.2" type="text">, x-max: <input name="xmax" size="12" value="6.2" type="text"><br>
+y-min: <input name="ymin" size="12" value="-3.8" type="text">, y-max: <input name="ymax" size="12" value="3.8" type="text"><br>
+<input value="Plot this" type="submit"> <input value="Reset" type="reset"> <input value="Copy =&gt;" onclick="Keep();" type="button">
+
+
+
+<legend>3:Memory:</legend>
+<input value="&lt;= Copy" onclick="Recall()" type="button"> <input value="Remove" onclick="Remove()" type="button"><br>
+<select name="memory" size="7" style="width: 200px" ondblclick="Recall()">
+<option value="-6.5 6.5 -3.8 3.8" selected="selected">(x^2-1)/(1-x+x^3)</option>
+<option value="-0.6 0.6 -2 2">y-2sgn(y)+2(y-sgn(y))/ (sq(y)-1)</option>
+<option value="-2.0 2.0 -2.0 2.0">sqrt(abs(ip(x) + fp(y))) * sqrt(abs(ip(y) + fp(x)))</option>
+<option value="-2.5 2.5 -2.5 2.5">ip(sqrt(xx+yy))</option>
+<option value="-1.7 1.7 -1.1 1.7">sin(2y)cos(3x) / sec(xy)</option>
+<option value="-3.5 3.5 -3.5 3.5">-sqrt(abs(x))*sin(-abs(y))</option>
+</select>
+
+<legend>4:Syntax check:</legend>
+<input name="errorHere" size="30" value="Passed" readonly="readonly" type="text">
+
+</form>
+<hr>
+<div id="GraphHere" class="picture"></div>
+<hr>
+<h1>Things to know</h1>
+<h2>Supported functions:</h2>
+<form name="buttons" action="plotter.htm" method="GET" onsubmit="return false">
+<fieldset>
+<legend>Standard:</legend>
+<input class="button" onclick="alert(this.title)" title="Addition" value="+" type="button">
+<input class="button" onclick="alert(this.title)" title="Subtraction" value="-" type="button">
+<input class="button" onclick="alert(this.title)" title="Multiplication" value="*" type="button">
+<input class="button" onclick="alert(this.title)" title="Divison" value="/" type="button">
+<input class="button" onclick="alert(this.title)" title="Inverse" value="inv" type="button">
+</fieldset>
+<fieldset>
+<legend>Trigonometric:</legend>
+<input class="button" onclick="alert(this.title)" title="Sinus" value="sin" type="button">
+<input class="button" onclick="alert(this.title)" title="Cosinus" value="cos" type="button">
+<input class="button" onclick="alert(this.title)" title="Tangens" value="tan" type="button">
+<input class="button" onclick="alert(this.title)" title="Secans" value="sec" type="button">
+<input class="button" onclick="alert(this.title)" title="Cosecans" value="csc" type="button">
+<input class="button" onclick="alert(this.title)" title="Cotangens" value="cot" type="button"><br>
+<input class="button" onclick="alert(this.title)" title="Arcus sinus" value="asin" type="button">
+<input class="button" onclick="alert(this.title)" title="Arcus cosinus" value="acos" type="button">
+<input class="button" onclick="alert(this.title)" title="Arcus tangens" value="atan" type="button">
+<input class="button" onclick="alert(this.title)" title="Arcus secans" value="asec" type="button">
+<input class="button" onclick="alert(this.title)" title="Arcus cosecans" value="acsc" type="button">
+<input class="button" onclick="alert(this.title)" title="Arcus cotangens" value="acot" type="button"><br>
+<input class="button" onclick="alert(this.title)" title="Sinus hyperbolicus" value="sinh" type="button">
+<input class="button" onclick="alert(this.title)" title="Cosinus hyperbolicus" value="cosh" type="button">
+<input class="button" onclick="alert(this.title)" title="Tangens hyperbolicus" value="tanh" type="button">
+<input class="button" onclick="alert(this.title)" title="Secans hyperbolicus" value="sech" type="button">
+<input class="button" onclick="alert(this.title)" title="Cosecans hyperbolicus" value="csch" type="button">
+<input class="button" onclick="alert(this.title)" title="Cotangens hyperbolicus" value="coth" type="button"><br>
+<input class="button" onclick="alert(this.title)" title="Arcus sinus hyperbolicus" value="asinh" type="button">
+<input class="button" onclick="alert(this.title)" title="Arcus cosinus hyperbolicus" value="acosh" type="button">
+<input class="button" onclick="alert(this.title)" title="Arcus tangens hyperbolicus" value="atanh" type="button">
+<input class="button" onclick="alert(this.title)" title="Arcus secans hyperbolicus" value="asech" type="button">
+<input class="button" onclick="alert(this.title)" title="Arcus cosecans hyperbolicus" value="acsch" type="button">
+<input class="button" onclick="alert(this.title)" title="Arcus cotangens hyperbolicus" value="acoth" type="button">
+</fieldset>
+<fieldset>
+<legend>Constants and random:</legend>
+<input class="button" onclick="alert(this.title)" title="Pi" value="pi" type="button">
+<input class="button" onclick="alert(this.title)" title="Euler constant" value="e" type="button">
+<input class="button" onclick="alert(this.title)" title="Random" value="rand" type="button">
+</fieldset>
+<fieldset>
+<legend>Mathematical:</legend>
+<input class="button" onclick="alert(this.title)" title="Exponential" value="exp" type="button">
+<input class="button" onclick="alert(this.title)" title="Natural logarithm" value="ln" type="button">
+<input class="button" onclick="alert(this.title)" title="Decimal logarithm" value="log" type="button">
+<input class="button" onclick="alert(this.title)" title="Logarithm in base b" value="logb" type="button"><br>
+<input class="button" onclick="alert(this.title)" title="Power" value="x^y" type="button">
+<input class="button" onclick="alert(this.title)" title="Power of ten" value="10^" type="button">
+<input class="button" onclick="alert(this.title)" title="Square" value="sq" type="button">
+<input class="button" onclick="alert(this.title)" title="Square root" value="sqrt" type="button"><br>
+<input class="button" onclick="alert(this.title)" title="Change sign" value="chs" type="button">
+<input class="button" onclick="alert(this.title)" title="Sign" value="sgn" type="button">
+<input class="button" onclick="alert(this.title)" title="Absolute value" value="abs" type="button">
+<input class="button" onclick="alert(this.title)" title="Integer part" value="ip" type="button">
+<input class="button" onclick="alert(this.title)" title="Fractional part" value="fp" type="button"><br>
+<input class="button" onclick="alert(this.title)" title="Floor" value="floor" type="button">
+<input class="button" onclick="alert(this.title)" title="Ceil" value="ceil" type="button">
+<input class="button" onclick="alert(this.title)" title="Minimum" value="min" type="button">
+<input class="button" onclick="alert(this.title)" title="Maximum" value="max" type="button">
+<input class="button" onclick="alert(this.title)" title="Modulus" value="mod" type="button">
+<input class="button" onclick="alert(this.title)" title="Integer divide" value="div" type="button"><br>
+<input class="button" onclick="alert(this.title)" title="And" value="and" type="button">
+<input class="button" onclick="alert(this.title)" title="Or" value="or" type="button">
+<input class="button" onclick="alert(this.title)" title="Xor" value="xor" type="button">
+<input class="button" onclick="alert(this.title)" title="Not" value="not" type="button">
+</fieldset>
+<fieldset>
+<legend>Statistical:</legend>
+<input class="button" onclick="alert(this.title)" title="Gamma" value="gamma" type="button">
+<input class="button" onclick="alert(this.title)" title="Factorial" value="!" type="button">
+<input class="button" onclick="alert(this.title)" title="Combinations" value="comb" type="button">
+<input class="button" onclick="alert(this.title)" title="Permutations" value="perm" type="button">
+<input class="button" onclick="alert(this.title)" title="Percent" value="%" type="button">
+<input class="button" onclick="alert(this.title)" title="Percent change" value="%ch" type="button">
+</fieldset>
+<fieldset>
+<legend>Special:</legend>
+<input class="button" onclick="alert(this.title)" title="Prime" value="prime" type="button">
+<input class="button" onclick="alert(this.title)" title="Greatest common divisor" value="gcd" type="button">
+<input class="button" onclick="alert(this.title)" title="Least common multiple" value="lcm" type="button"><br>
+</fieldset>
+<fieldset>
+<legend>Comparison:</legend>
+<input class="button" onclick="alert(this.title)" title="Less than" value="&lt;" type="button">
+<input class="button" onclick="alert(this.title)" title="Less or equal" value="&lt;=" type="button">
+<input class="button" onclick="alert(this.title)" title="Equal" value="==" type="button">
+<input class="button" onclick="alert(this.title)" title="Different" value="!=" type="button">
+<input class="button" onclick="alert(this.title)" title="Greater or equal" value="&gt;=" type="button">
+<input class="button" onclick="alert(this.title)" title="Greater than" value="&gt;" type="button">
+</fieldset>
+</form>
+<h2>General:</h2>
+<ul>
+<li>Requires support for "CSS1" and "innerHTML" (DOM level 1)</li>
+<li>Invalid functions should never produce JavaScript errors.<br>If they do, let me know.</li>
+<li>Functions are case-insensitive, sin(x) = Sin(X) = sIN(x)...</li>
+<li>Supports implied multiplication (in most browsers), 2sin(xy) &lt;=&gt; 2 * sin(x * y).</li>
+<li>Supports <strong>^</strong> as power-function, x^3 &lt;=&gt; pow(x,3).</li>
+<li>All trigonometric functions operate in radians.</li>
+<li>Line-mode does <strong>not</strong> check for continuity.</li>
+<li><strong>Plotting takes time !</strong>, even more in 3D.</li>
+<li>Avoid "Largest", unless you have the (virtual) memory to do so.</li>
+<li>FAST computer recommended :)</li>
+</ul>
+<h2>Tested and found usable with:</h2>
+<ul>
+<li><a href="http://www.mozilla.org/products/firefox/">Firefox 1.5</a></li>
+<li><a href="http://www.microsoft.com/">Internet Explorer 6.0</a></li>
+<li>This should also work in Mozilla 1.0 or later and Netscape 8 or later, but this is unverified.</li>
+</ul>
+<h2>Completely unusable with:</h2>
+<ul>
+<li><a href="http://www.opera.com/">Opera, all versions</a>, sorry. Seems like Opera ignores my font-width in favor of its own minimum.</li>
+<li>Any more? (Lynx, of course; but... :)</li>
+</ul>
+<h1>Final notes</h1>
+<h2>Your browser:</h2>
+<dl>
+<dt>
+<script type="text/javascript">
+window.document.writeln(navigator.appName);
+</script>Netscape
+
+</dt>
+<dd>
+<script type="text/javascript">
+window.document.writeln(navigator.userAgent);
+</script>Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:28.0) Gecko/20100101 Firefox/28.0
+
+</dd>
+</dl>
+<h2>Blame it on me:</h2>
+<p>Contact: Javascript.Plotter@cie.etat.lu</p>
+<p>Script version 2.92</p>

@@ -27,6 +27,13 @@ def editor():
     response.files.insert(0,URL('static', 'plugin_ckeditor/ckeditor.js'))
     return dict(message=T('Write Your Things Here'))
 
+def funcplot():
+
+    response.files.insert(0,URL('static', 'js/funcplot.js'))
+    response.files.insert(1,URL('static', 'css/funcplot.css'))
+    # response.write(("onload="DoOnLoad()")") need this command in opening <body> tag to initialise plot
+    return dict(message=T('Graph to your heart\'s content'))
+
 def newpage():
     """
     example action using the internationalization operator T and flash
