@@ -17,5 +17,7 @@ CKEDITOR.editorConfig = function( config ) {
     config.extraPlugins = 'pbckcode';
     config.extraPlugins = 'texzilla';
     config.extraPlugins = 'widget';
+    config.extraPlugins = 'magicline';
+    config.extraPlugins = 'mathedit';
 */
 };

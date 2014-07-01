@@ -24,7 +24,7 @@ def jmol():
     return dict(message=T('A Molecule'))
 
 def editor():
-    response.files.insert(0,URL('static', 'plugin_ckeditor/ckeditor.js'))
+    response.files.insert(0,URL('static', 'ckeditor/ckeditor.js'))
     return dict(message=T('Write Your Things Here'))
 
 def funcplot():
