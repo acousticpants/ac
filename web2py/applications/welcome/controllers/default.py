@@ -89,13 +89,17 @@ def aggregator():
 
     feeds = ["http://www.natureasia.com/en/rss/research",
              "http://feeds.reuters.com/reuters/scienceNews",
+             "http://www.worldscientific.com/action/showFeed?type=etoc&feed=rss&jc=ijm",
+             "http://www.worldscientific.com/action/showFeed?type=etoc&feed=rss&jc=ijfcs",
              "http://rss.slashdot.org/Slashdot/slashdot/to",
              "http://feeds.reuters.com/reuters/technologyNews"]
     d = feedparser.parse(feeds[0])
     e = feedparser.parse(feeds[1])
     f = feedparser.parse(feeds[2])
     g = feedparser.parse(feeds[3])
-    return dict(message=T('All the science news'),content=d.entries + e.entries + f.entries + g.entries)
+    h = feedparser.parse(feeds[4])
+    i = feedparser.parse(feeds[5])
+    return dict(message=T('All the science news'),content=d.entries + e.entries + f.entries + g.entries + h.entries + i.entries)
 """
 
 def user():
