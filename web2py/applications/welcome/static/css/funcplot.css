@@ -1,8 +1,12 @@
 <style type="text/css">
+/* 
 body { background-color: white; color: black }
 h1 { background-color: white; color: black }
 h2 { background-color: white; color: black }
-.button { width: 4em; font-family: monospace; font-style: normal; font-size: 0.75em }
+*/
+.button { width: 4em; font-family: monospace; font-style: normal; font-size: 0.75em; 
+          margin-left: auto; margin-right: auto; padding: 2px
+        }
 div.picture {
 	white-space: pre !important;
 	line-height: 1px !important;

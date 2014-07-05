@@ -20,8 +20,10 @@ Plot mode:<br>
 
 <legend>2:Function to plot:</legend>
 f(x[,y]) = <input name="fnfx" size="40" value="2x" type="text"><br>
-x-min: <input name="xmin" size="12" value="-6.2" type="text">, x-max: <input name="xmax" size="12" value="6.2" type="text"><br>
-y-min: <input name="ymin" size="12" value="-3.8" type="text">, y-max: <input name="ymax" size="12" value="3.8" type="text"><br>
+x-min: <input name="xmin" size="12" value="-6.2" type="text"><br> 
+x-max: <input name="xmax" size="12" value="6.2" type="text"><br>
+y-min: <input name="ymin" size="12" value="-3.8" type="text"><br> 
+y-max: <input name="ymax" size="12" value="3.8" type="text"><br>
 <input value="Plot this" type="submit"> <input value="Reset" type="reset"> <input value="Copy =&gt;" onclick="Keep();" type="button">
 
 
@@ -41,14 +43,16 @@ y-min: <input name="ymin" size="12" value="-3.8" type="text">, y-max: <input nam
 <input name="errorHere" size="30" value="Passed" readonly="readonly" type="text">
 
 </form>
-<hr>
+
+<h2>Your plot will appear here</h2>
 <div id="GraphHere" class="picture"></div>
-<hr>
-<h1>Things to know</h1>
+
+
 <h2>Supported functions:</h2>
 <form name="buttons" action="plotter.htm" method="GET" onsubmit="return false">
 <fieldset>
 <legend>Standard:</legend>
+
 <input class="button" onclick="alert(this.title)" title="Addition" value="+" type="button">
 <input class="button" onclick="alert(this.title)" title="Subtraction" value="-" type="button">
 <input class="button" onclick="alert(this.title)" title="Multiplication" value="*" type="button">
@@ -56,6 +60,7 @@ y-min: <input name="ymin" size="12" value="-3.8" type="text">, y-max: <input nam
 <input class="button" onclick="alert(this.title)" title="Inverse" value="inv" type="button">
 </fieldset>
 <fieldset>
+
 <legend>Trigonometric:</legend>
 <input class="button" onclick="alert(this.title)" title="Sinus" value="sin" type="button">
 <input class="button" onclick="alert(this.title)" title="Cosinus" value="cos" type="button">

@@ -9,6 +9,12 @@
 ## - call exposes all registered services (none by default)
 #########################################################################
 
+from gluon.tools import Mail
+mail = Mail()
+
+mail.settings.server = 'smtp.gmail.com:587'
+mail.settings.sender = 'atomcogs@gmail.com'
+mail.settings.login = 'atomcogs@gmail.com:@w3e4r5t'
 
 def index():
     """
@@ -52,7 +58,45 @@ def molecule_videos():
 
     return dict(message=T('Atomcogs Molecule Videos'))
 
+def contact():
+    """ commenting out to try code below
+    form=FORM(TABLE(TR("Your name: ",INPUT(_type="text",_name="name",requires=IS_NOT_EMPTY())),
+                    TR("Your email: ",INPUT(_type="text",_name="email",requires=IS_EMAIL())),
+                    TR("Your message: ",TEXTAREA(_name="profile",value="write something here",requires=IS_NOT_EMPTY())),
+                    TR(" ",INPUT(_type="submit",_value="SEND"))))
+    if form.accepts(request,session):
+        response.flash="form accepted"
+    elif form.errors:
+        response.flash="form is invalid"
+
+    return dict(message=T('Leave a message'),form=form,vars=form.vars)
+    """
+
+    form = SQLFORM.factory(Field('name', requires=IS_NOT_EMPTY()),
+                           Field('email', requires=[IS_EMAIL(error_message='invalid email!'), IS_NOT_EMPTY()]),
+                           Field('message', requires=IS_NOT_EMPTY(), type='text'),
+                           captcha_field())
+    #form.element('table').insert(-1,TR('',Recaptcha(),''))
+    if form.process().accepted:
+        session.name = form.vars.name
+        session.email = form.vars.email
+        session.message = form.vars.message
+
+        x = mail.send(to=['atomcogs@gmail.com'],
+            subject = 'atomcogs visitor left a message!',
+            message = 'From ' + session.name + ' ' + session.email + ':\n' + session.message
+        )
+
+        if x == True:
+            response.flash = 'Message sent! We\'ll get back to you shortly'
+        else:
+            response.flash = 'Failed to send email, so sorry. Please try again.'
+    elif form.errors:
+        response.flash = 'Sorry, this form is broken right now'
+
+    return dict(message=T('Leave a message'),form=form)
 """
+
 def user():
     
     exposes:

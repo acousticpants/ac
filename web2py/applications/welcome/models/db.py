@@ -50,8 +50,8 @@ auth.define_tables(username=False, signature=False)
 ## configure email
 mail = auth.settings.mailer
 mail.settings.server = 'logging' or 'smtp.gmail.com:587'
-mail.settings.sender = 'you@gmail.com'
-mail.settings.login = 'username:password'
+mail.settings.sender = 'atomcogs@gmail.com'
+mail.settings.login = 'atomcogs@gmail.com:@w3e4r5t'
 
 ## configure auth policy
 auth.settings.registration_requires_verification = False
@@ -82,3 +82,10 @@ use_janrain(auth, filename='private/janrain.key')
 
 ## after defining tables, uncomment below to enable auditing
 # auth.enable_record_versioning(db)
+
+def captcha_field(request=request):
+    from gluon.tools import Recaptcha
+    w = lambda x,y: Recaptcha(request,
+                             '6LdRV_YSAAAAAAIJnz68jMLDphTEyjasBPe0Dj--', 
+                             '6LdRV_YSAAAAAKpyrLdQDoRnBy7Rffx1BMyT5d_m')
+    return Field('captcha', 'string', label='Are you human?', widget=w, default='ok')
