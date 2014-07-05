@@ -1,0 +1,17 @@
+{{left_sidebar_enabled,right_sidebar_enabled=True,('message' in globals())}}
+
+{{extend 'layout.html'}}
+{{if 'message' in globals():}}
+<h3>{{=message}}</h3>
+<ul>
+{{for feed in content:}}
+{{=LI(A(feed.title, _href=feed.link))}}
+{{pass}}
+</ul>
+{{elif 'content' in globals():}}
+
+{{else:}}
+{{=BEAUTIFY(response._vars)}}
+{{pass}}
+{{block left_sidebar,right_sidebar}}
+{{end}}

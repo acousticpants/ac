@@ -59,24 +59,11 @@ def molecule_videos():
     return dict(message=T('Atomcogs Molecule Videos'))
 
 def contact():
-    """ commenting out to try code below
-    form=FORM(TABLE(TR("Your name: ",INPUT(_type="text",_name="name",requires=IS_NOT_EMPTY())),
-                    TR("Your email: ",INPUT(_type="text",_name="email",requires=IS_EMAIL())),
-                    TR("Your message: ",TEXTAREA(_name="profile",value="write something here",requires=IS_NOT_EMPTY())),
-                    TR(" ",INPUT(_type="submit",_value="SEND"))))
-    if form.accepts(request,session):
-        response.flash="form accepted"
-    elif form.errors:
-        response.flash="form is invalid"
-
-    return dict(message=T('Leave a message'),form=form,vars=form.vars)
-    """
 
     form = SQLFORM.factory(Field('name', requires=IS_NOT_EMPTY()),
                            Field('email', requires=[IS_EMAIL(error_message='invalid email!'), IS_NOT_EMPTY()]),
                            Field('message', requires=IS_NOT_EMPTY(), type='text'),
                            captcha_field())
-    #form.element('table').insert(-1,TR('',Recaptcha(),''))
     if form.process().accepted:
         session.name = form.vars.name
         session.email = form.vars.email
@@ -95,6 +82,20 @@ def contact():
         response.flash = 'Sorry, this form is broken right now'
 
     return dict(message=T('Leave a message'),form=form)
+
+def aggregator():
+    import gluon.contrib.feedparser as feedparser
+    response.generic_patterns = ['.rss']
+
+    feeds = ["http://www.natureasia.com/en/rss/research",
+             "http://feeds.reuters.com/reuters/scienceNews",
+             "http://rss.slashdot.org/Slashdot/slashdot/to",
+             "http://feeds.reuters.com/reuters/technologyNews"]
+    d = feedparser.parse(feeds[0])
+    e = feedparser.parse(feeds[1])
+    f = feedparser.parse(feeds[2])
+    g = feedparser.parse(feeds[3])
+    return dict(message=T('All the science news'),content=d.entries + e.entries + f.entries + g.entries)
 """
 
 def user():
