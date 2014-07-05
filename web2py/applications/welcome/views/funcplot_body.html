@@ -1,4 +1,6 @@
 <body onload="DoOnLoad()">
+<h2>Your plot will appear here</h2>
+<div id="GraphHere" class="picture"></div>
 <form class="container-fluid" name="plotForm" action="funcplot" method="POST" onsubmit="DoPlot(FF.value); return false">
 
 <legend class="container-fluid" "table">1:Drawing mode:</legend>
@@ -43,10 +45,6 @@ y-max: <input name="ymax" size="12" value="3.8" type="text"><br>
 <input name="errorHere" size="30" value="Passed" readonly="readonly" type="text">
 
 </form>
-
-<h2>Your plot will appear here</h2>
-<div id="GraphHere" class="picture"></div>
-
 
 <h2>Supported functions:</h2>
 <form name="buttons" action="plotter.htm" method="GET" onsubmit="return false">
