@@ -53,3 +53,69 @@ CREATE TABLE auth_cas(
     renew CHAR(1)
 );
 success!
+timestamp: 2014-06-28T04:35:59.091759
+CREATE TABLE plugin_math2py_amatrix(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512),
+    alpha TEXT,
+    beta TEXT,
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2014-06-28T04:35:59.239692
+CREATE TABLE plugin_math2py_matrix(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512),
+    alpha TEXT,
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2014-06-28T04:37:46.601599
+CREATE TABLE plugin_math2py_csvam(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    csvals CHAR(512),
+    csv_data BLOB,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2014-06-28T04:38:48.692139
+CREATE TABLE plugin_math2py_debugging(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    users INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    datetime TIMESTAMP,
+    mod_called CHAR(512),
+    fn_called CHAR(512),
+    msg TEXT,
+    fnargs TEXT
+);
+success!
+timestamp: 2014-06-28T04:39:11.088053
+CREATE TABLE plugin_math2py_csv(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    dat TEXT,
+    filename CHAR(512)
+);
+success!
+timestamp: 2014-06-28T04:39:46.720685
+CREATE TABLE plugin_math2py_notepad(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    users INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    name CHAR(512),
+    dat TEXT,
+    datetime TIMESTAMP
+);
+success!
+timestamp: 2014-06-28T04:40:38.636092
+CREATE TABLE plugin_math2py_option(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    name CHAR(512),
+    typ CHAR(512),
+    val CHAR(512),
+    reserved CHAR(1),
+    comments TEXT,
+    label CHAR(512)
+);
+success!
